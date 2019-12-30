@@ -1,12 +1,11 @@
-def parse_props(props_path):
+def parseprops(props_path):
+    """
+    Parses information from a Java properties file
+    :param props_path: path to file 
+    :return: dictionary object
+    """
     props = open(props_path).read().split("\n")
-    props_dict = {}
-    
-    for kv_pair in props:
-        if len(kv_pair) < 3:
-            props.remove(kv_pair)
-        else:
-            kv_split = kv_pair.split("=")
-            props_dict.update({kv_split[0]: kv_split[1]})
-    
-    return props_dict
+    delim = "="
+    props = {kv.split(delim)[0]: kv.split(delim)[1] for kv in props}
+
+    return props
